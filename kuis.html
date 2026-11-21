@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis RuangIsyarat</title>
+    <link rel="stylesheet" href="kuis.css">
+</head>
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0B1F3A;
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #09182D;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 850px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.judul {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.judul h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.judul p {
+    color: #DCE6F1;
+    line-height: 1.6;
+}
+
+/* CARD */
+.quiz-card {
+    background: #142D4E;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    color: #70A5E8;
+    margin-bottom: 15px;
+}
+
+/* PROGRESS */
+.progress {
+    width: 100%;
+    height: 8px;
+    background: #09182D;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 20%;
+    height: 8px;
+    background: #70A5E8;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* PERTANYAAN */
+.quiz-card h2 {
+    font-size: 21px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* PILIHAN */
+.pilihan {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pilihan button {
+    padding: 16px;
+    border: 1px solid #355477;
+    border-radius: 10px;
+    background: #1C426B;
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pilihan button:hover:not(:disabled) {
+    background: #70A5E8;
+    color: #09182D;
+}
+
+.pilihan button.benar {
+    background: #166534;
+    border: 2px solid #4ade80;
+    color: white;
+}
+
+.pilihan button.salah {
+    background: #991b1b;
+    border: 2px solid #f87171;
+    color: white;
+}
+
+.pilihan button:disabled {
+    cursor: not-allowed;
+}
+
+/* HASIL JAWABAN */
+#hasil {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* TOMBOL */
+.btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    background: #70A5E8;
+    color: #09182D;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #A7C9F5;
+}
+
+.btn:disabled {
+    background: #52647A;
+    color: #DCE6F1;
+    cursor: not-allowed;
+}
+
+/* HASIL AKHIR */
+.hasil-akhir {
+    display: none;
+    text-align: center;
+}
+
+.ikon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.hasil-akhir h1 {
+    margin-bottom: 15px;
+}
+
+.hasil-akhir p {
+    color: #DCE6F1;
+}
+
+.nilai {
+    font-size: 55px;
+    font-weight: bold;
+    color: #70A5E8;
+    margin: 25px 0;
+}
+
+.hasil-akhir h3 {
+    color: #DCE6F1;
+    margin-bottom: 15px;
+}
+
+.kembali {
+    display: block;
+    margin-top: 20px;
+    color: #70A5E8;
+    text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+
+    .container {
+        margin: 20px auto;
+    }
+
+    .quiz-card {
+        padding: 22px;
+    }
+
+    .judul h1 {
+        font-size: 25px;
+    }
+
+    .quiz-card h2 {
+        font-size: 18px;
+    }
+}
+
+</style>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h2>🤟 RuangIsyarat</h2>
+        <a href="dashboard.html">Kembali</a>
+    </nav>
+
+    <!-- CONTAINER -->
+    <main class="container">
+
+        <div class="judul">
+            <h1>Kuis Bahasa Isyarat</h1>
+            <p>Uji kemampuanmu setelah belajar bahasa isyarat!</p>
+        </div>
+
+        <!-- KUIS -->
+        <div class="quiz-card" id="quiz">
+
+            <div class="info">
+                <span id="nomor">Soal 1 dari 5</span>
+                <span id="skor">Skor: 0</span>
+            </div>
+
+            <div class="progress">
+                <div class="progress-bar" id="progress"></div>
+            </div>
+
+            <h2 id="pertanyaan"></h2>
+
+            <div class="pilihan" id="pilihan"></div>
+
+            <p id="hasil"></p>
+
+            <button class="btn" id="lanjut"
+                onclick="soalBerikutnya()" disabled>
+                Soal Berikutnya
+            </button>
+
+        </div>
+
+        <!-- HASIL AKHIR -->
+        <div class="quiz-card hasil-akhir" id="akhir">
+
+            <div class="ikon">🏆</div>
+
+            <h1>Kuis Selesai!</h1>
+
+            <p>Selamat! Kamu telah menyelesaikan kuis.</p>
+
+            <div class="nilai" id="nilai">0</div>
+
+            <h3 id="pesan"></h3>
+
+            <button class="btn" onclick="mulaiUlang()">
+                Ulangi Kuis
+            </button>
+
+            <a class="kembali" href="dashboard.html">
+                Kembali ke Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        const dataSoal = [
+            {
+                soal: "Apa tujuan mempelajari bahasa isyarat?",
+                jawaban: [
+                    "Untuk bermain musik",
+                    "Untuk berkomunikasi dengan teman Tuli",
+                    "Untuk menghitung angka",
+                    "Untuk menggambar"
+                ],
+                benar: 1
+            },
+
+            {
+                soal: "Apa arti bahasa isyarat?",
+                jawaban: [
+                    "Bahasa menggunakan tulisan saja",
+                    "Bahasa menggunakan gerakan tangan, ekspresi, dan tubuh",
+                    "Bahasa menggunakan suara saja",
+                    "Bahasa menggunakan angka"
+                ],
+                benar: 1
+            },
+
+            {
+                soal: "Apa fungsi ekspresi wajah dalam bahasa isyarat?",
+                jawaban: [
+                    "Sebagai hiasan",
+                    "Tidak memiliki fungsi",
+                    "Membantu menyampaikan makna",
+                    "Menggantikan semua gerakan tangan"
+                ],
+                benar: 2
+            },
+
+            {
+                soal: "Apa kepanjangan dari SIBI?",
+                jawaban: [
+                    "Sistem Isyarat Bahasa Indonesia",
+                    "Sistem Informasi Bahasa Indonesia",
+                    "Sarana Isyarat Belajar Indonesia",
+                    "Sekolah Isyarat Bahasa Indonesia"
+                ],
+                benar: 0
+            },
+
+            {
+                soal: "Mengapa kita perlu belajar bahasa isyarat?",
+                jawaban: [
+                    "Agar terlihat keren",
+                    "Agar membangun komunikasi inklusif",
+                    "Agar tidak perlu berbicara",
+                    "Agar bisa menulis lebih cepat"
+                ],
+                benar: 1
+            }
+        ];
+
+        let nomorSoal = 0;
+        let skor = 0;
+        let sudahMenjawab = false;
+
+        function tampilkanSoal() {
+
+            sudahMenjawab = false;
+
+            const soal = dataSoal[nomorSoal];
+
+            document.getElementById("nomor").textContent =
+                `Soal ${nomorSoal + 1} dari ${dataSoal.length}`;
+
+            document.getElementById("skor").textContent =
+                "Skor: " + skor;
+
+            document.getElementById("progress").style.width =
+                ((nomorSoal + 1) / dataSoal.length * 100) + "%";
+
+            document.getElementById("pertanyaan").textContent =
+                soal.soal;
+
+            document.getElementById("hasil").textContent = "";
+
+            document.getElementById("lanjut").disabled = true;
+
+            const pilihan = document.getElementById("pilihan");
+
+            pilihan.innerHTML = "";
+
+            soal.jawaban.forEach((jawaban, index) => {
+
+                const tombol = document.createElement("button");
+
+                tombol.textContent =
+                    String.fromCharCode(65 + index) + ". " + jawaban;
+
+                tombol.onclick = () => pilihJawaban(index, tombol);
+
+                pilihan.appendChild(tombol);
+
+            });
+        }
+
+        function pilihJawaban(index, tombol) {
+
+            if (sudahMenjawab) return;
+
+            sudahMenjawab = true;
+
+            const soal = dataSoal[nomorSoal];
+
+            const semuaTombol =
+                document.querySelectorAll(".pilihan button");
+
+            semuaTombol.forEach(btn => btn.disabled = true);
+
+            if (index === soal.benar) {
+
+                skor += 20;
+
+                tombol.classList.add("benar");
+
+                document.getElementById("hasil").textContent =
+                    "Hebat! Jawaban kamu benar.";
+
+                document.getElementById("hasil").style.color =
+                    "#4ade80";
+
+            } else {
+
+                tombol.classList.add("salah");
+
+                semuaTombol[soal.benar].classList.add("benar");
+
+                document.getElementById("hasil").textContent =
+                    "Jawaban belum tepat. Ayo belajar lagi!";
+
+                document.getElementById("hasil").style.color =
+                    "#f87171";
+            }
+
+            document.getElementById("skor").textContent =
+                "Skor: " + skor;
+
+            document.getElementById("lanjut").disabled = false;
+        }
+
+        function soalBerikutnya() {
+
+            if (!sudahMenjawab) return;
+
+            nomorSoal++;
+
+            if (nomorSoal < dataSoal.length) {
+
+                tampilkanSoal();
+
+            } else {
+
+                tampilkanHasil();
+            }
+        }
+
+        function tampilkanHasil() {
+
+            document.getElementById("quiz").style.display = "none";
+
+            document.getElementById("akhir").style.display = "block";
+
+            document.getElementById("nilai").textContent =
+                skor;
+
+            document.getElementById("pesan").textContent =
+                skor >= 80
+                ? "Luar biasa! Kamu hebat."
+                : "Tetap semangat belajar bahasa isyarat!";
+        }
+
+        function mulaiUlang() {
+
+            nomorSoal = 0;
+            skor = 0;
+
+            document.getElementById("quiz").style.display = "block";
+
+            document.getElementById("akhir").style.display = "none";
+
+            tampilkanSoal();
+        }
+
+        tampilkanSoal();
+
+    </script>
+
+</body>
+</html>
+

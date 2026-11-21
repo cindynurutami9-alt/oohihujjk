@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Belajar - IsyaratKu</title>
+    <link rel="stylesheet" href="belajar.css">
+</head>
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #F1F5F9;
+    color: #0B1F3A;
+}
+
+/* NAVBAR */
+
+.navbar {
+    background: #0B1F3A;
+    padding: 20px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.navbar a {
+    color: #CBD5E1;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+.logout {
+    background: #315B8A;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white !important;
+}
+
+/* HEADER */
+
+.header {
+    background: linear-gradient(
+        135deg,
+        #0B1F3A,
+        #315B8A
+    );
+
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+}
+
+.header span {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #CBD5E1;
+}
+
+.header h1 {
+    font-size: 38px;
+    margin: 15px 0;
+}
+
+.header p {
+    color: #DBEAFE;
+    line-height: 1.8;
+}
+
+/* LEARNING */
+
+.learning {
+    padding: 50px 8%;
+    text-align: center;
+}
+
+.learning h2 {
+    font-size: 28px;
+    color: #0B1F3A;
+}
+
+.subtitle {
+    color: #64748B;
+    margin: 12px 0 35px;
+}
+
+/* CARD CONTAINER */
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* CARD */
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+    border: 1px solid #E2E8F0;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(11,31,58,0.10);
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: #0B1F3A;
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #64748B;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.card a {
+    display: inline-block;
+    color: #315B8A;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.card a:hover {
+    color: #0B1F3A;
+}
+
+/* INFORMATION */
+
+.information {
+    margin: 20px 8% 40px;
+    padding: 40px;
+    text-align: center;
+    background: #DCE6F1;
+    border-radius: 15px;
+}
+
+.information h2 {
+    color: #0B1F3A;
+    margin-bottom: 15px;
+}
+
+.information p {
+    color: #475569;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: auto;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0B1F3A;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .navbar ul {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    .learning {
+        padding: 35px 5%;
+    }
+
+    .information {
+        margin: 20px 5%;
+    }
+}
+
+</style>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">🤟 IsyaratKu</div>
+
+        <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="belajar.html">Belajar</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+        </ul>
+
+        <a href="index.html" class="logout">Logout</a>
+    </nav>
+
+    <!-- HEADER -->
+    <section class="header">
+        <span>MENU PEMBELAJARAN</span>
+        <h1>Ayo Mulai Belajar!</h1>
+
+        <p>
+            Belajar bahasa isyarat menjadi lebih mudah.
+            Pilih materi yang ingin kamu pelajari.
+        </p>
+    </section>
+
+    <!-- MENU BELAJAR -->
+    <section class="learning">
+
+        <h2>Pilih Materi Belajar</h2>
+        <p class="subtitle">
+            Tersedia berbagai materi untuk pemula.
+        </p>
+
+        <div class="container">
+
+            <div class="card">
+                <div class="icon">🔤</div>
+                <h3>Huruf Abjad</h3>
+                <p>Mengenal bahasa isyarat
+                   huruf A sampai Z.</p>
+                <a href="abjad.html">Pelajari Sekarang →</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔢</div>
+                <h3>Angka</h3>
+                <p>Belajar bahasa isyarat
+                   angka 1 sampai 10.</p>
+                <a href="angka.html">Pelajari Sekarang →</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">💬</div>
+                <h3>Kosakata</h3>
+                <p>Mempelajari kosakata
+                   bahasa isyarat sehari-hari.</p>
+                <a href="kosakata.html">Pelajari Sekarang →</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">👋</div>
+                <h3>Salam dan Sapaan</h3>
+                <p>Belajar salam, sapaan,
+                   dan perkenalan.</p>
+                <a href="sapaan.html">Pelajari Sekarang →</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏠</div>
+                <h3>Keluarga</h3>
+                <p>Mengenal isyarat
+                   anggota keluarga.</p>
+                <a href="keluarga.html">Pelajari Sekarang →</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">📚</div>
+                <h3>Aktivitas</h3>
+                <p>Belajar isyarat
+                   kegiatan sehari-hari.</p>
+                <a href="aktivitas.html">Pelajari Sekarang →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INFORMASI -->
+    <section class="information" id="tentang">
+        <h2>Belajar Bersama IsyaratKu</h2>
+
+        <p>
+            IsyaratKu merupakan media pembelajaran
+            bahasa isyarat untuk meningkatkan
+            pengetahuan dan komunikasi inklusif
+            di lingkungan masyarakat.
+        </p>
+    </section>
+
+    <footer>
+        <p>© 2026 IsyaratKu | Belajar Bahasa Isyarat</p>
+    </footer>
+
+</body>
+</html>
